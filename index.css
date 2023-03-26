@@ -1,0 +1,83 @@
+.App {
+    text-align: center;
+}
+
+.body {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+.App-logo {
+    width: 50%;
+    height: 50%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.front-logo-description {
+    width: 48%;
+    height: 45%;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.appView {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    margin: auto;
+}
+
+.box {
+    width: 50%;
+    height: 10%;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+}
+
+.apneButton {
+    margin: 10px;
+}
+
+.zombieName {
+
+}
+
+.title {
+    color: #282c34;
+}
+
+.buttonLane {
+    margin-left: 50px;
+    padding-left: 10%;
+}
