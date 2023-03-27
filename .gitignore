@@ -1,2 +1,4 @@
 build/
 truffle-config.js
+CryptoZombies/.secret
+CryptoZombies/.apikey
