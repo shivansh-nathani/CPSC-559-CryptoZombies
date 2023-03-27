@@ -215,7 +215,7 @@ async function attackZombie() {
 async function kittyContract() {
   var kittyContractAddress = document.getElementById('kittyAddress').value;
   //$("#txStatus").text("Creating new zombie on the blockchain. This may take a while...");
-  const kittyObject = await cryptoZombies.methods.balanceOf(kittyContractAddress);
+  const kittyObject = await cryptoZombies.methods.setKittyContractAddress(kittyContractAddress);
   // kittyObject
   // .send({ from: userAccount })
   // .on("receipt", function (receipt) {
