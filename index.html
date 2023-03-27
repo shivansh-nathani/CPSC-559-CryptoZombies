@@ -32,17 +32,87 @@
   </div>
 
   <div class="appView box">
-    <div id="root"></div>
-    <div id="txStatus"></div>
-    <div id="zombies"></div>
+    <div class="ms-1">
+      <div id="root"></div>
+      <div id="txStatus"></div>
+      <div id="zombies"></div>
+    </div>
+
     <div class="buttonLane">
       <button class="showZombieButton apneButton btn btn-primary">Show Zombies</button>
       <button type="button" class="btn btn-primary createzombieButton" data-bs-toggle="modal" data-bs-target="#myModal">
         Create Zombie
       </button>
       <button class="levelupButton apneButton btn btn-primary">Level Up</button>
+      <button type="button" class="btn btn-primary createzombieButton" data-bs-toggle="modal"
+        data-bs-target="#changeNameModal">
+        Change Name
+      </button>
+      <button type="button" class="btn btn-primary apneButton createzombieButton" data-bs-toggle="modal"
+        data-bs-target="#attackModal">
+        Attack Zombie
+      </button>
+      <button type="button" class="btn btn-primary apneButton createzombieButton" data-bs-toggle="modal"
+        data-bs-target="#kittyModal">
+        Kitty Contract
+      </button>
     </div>
+  </div>
 
+  <div class="modal" id="kittyModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title title">Set Kitty Contract</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <input type="text" id="kittyAddress" class="form-control" placeholder="Enter kitty contract address."
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="modalCreateZombie" class="btn btn-danger" onclick="kittyContract()"
+            data-bs-dismiss="modal">Set Kitty Contract</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="changeNameModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title title">Zombie Name</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <input type="text" id="zombieNewName" class="form-control" placeholder="Enter a name for the zombie."
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="modalCreateZombie" class="btn btn-danger" onclick="changeZombieName()"
+            data-bs-dismiss="modal">Change Name</button>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <div class="modal" id="myModal">
@@ -51,20 +121,50 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title title">Modal Heading</h4>
+          <h4 class="modal-title title">Create Zombie</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
           <div class="input-group mb-3">
-            <input type="text" id="zombieName" class="form-control" placeholder="Enter zombie name." aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="text" id="zombieName" class="form-control" placeholder="Enter zombie name."
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
           </div>
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" id="modalCreateZombie" class="btn btn-danger" onclick="createZombie()" data-bs-dismiss="modal">Create Zombie</button>
+          <button type="button" id="modalCreateZombie" class="btn btn-danger" onclick="createZombie()"
+            data-bs-dismiss="modal">Create Zombie</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="attackModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title title">Attack Zombie</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <input type="text" id="attackeeName" class="form-control" placeholder="Enter zombie address to attack."
+              aria-label="Recipient's address" aria-describedby="basic-addon2">
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="modalCreateZombie" class="btn btn-danger" onclick="attackZombie()"
+            data-bs-dismiss="modal">Attack Zombie</button>
         </div>
 
       </div>

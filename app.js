@@ -6,7 +6,7 @@ var showZombieButton, createzombieButton, levelupButton, homeView, appView, zomb
 
 function startApp() {
   //ZombieOwnership contratc address
-  var cryptoZombiesAddress = "0xfaB057917D7611C79dE0e9AEBF447683e00ddc0D";
+  var cryptoZombiesAddress = "0x8Bcb721BE1E1da292101A55961e730327a238069";
 
   cryptoZombies = new web3.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
 
@@ -35,9 +35,11 @@ function displayZombies(ids) {
 
     getZombieDetails(id)
       .then(function (zombie) {
-
-
+        var hash = hashString(zombie.dna);
+        var src = `./src/zombies/zombie${(hash)}.png`;
         $("#zombies").append(`<div class="zombie">
+              <div class="d-flex mt-1">
+              <img src=${src} class="zombie-photo" alt="logo" />
               <ul>
                 <li>Name: ${zombie.name}</li>
                 <li>DNA: ${zombie.dna}</li>
@@ -46,6 +48,9 @@ function displayZombies(ids) {
                 <li>Losses: ${zombie.lossCount}</li>
                 <li>Ready Time: ${zombie.readyTime}</li>
               </ul>
+              
+              </div>
+              
             </div>`);
       });
   }
@@ -178,6 +183,90 @@ function onLoad() {
 function createZombie() {
   const zombieName = document.getElementById('zombieName');
   createRandomZombie(zombieName.value);
+}
+
+async function attackZombie() {
+  var attackeeName = document.getElementById('attackeeName').value;
+  //$("#txStatus").text("Creating new zombie on the blockchain. This may take a while...");
+
+  const userId = await getZombiesByOwner(userAccount).then(async (userId) => {
+    return userId;
+  });
+
+  const attackeeId = await getZombiesByOwner(attackeeName).then(async (attackeeId) => {
+    return attackeeId;
+  });
+
+  const attackObject = await cryptoZombies.methods.attack(userId, attackeeId);
+
+  attackObject
+    .send({ from: userAccount })
+    .on("receipt", function (receipt) {
+      $("#txStatus").text("Successfully attacked " + attackeeName + "!");
+
+      //getZombiesByOwner(userAccount).then(displayZombies);
+    })
+    .on("error", function (error) {
+      $("#txStatus").text(error);
+    });
+
+}
+
+async function kittyContract() {
+  var kittyContractAddress = document.getElementById('kittyAddress').value;
+  //$("#txStatus").text("Creating new zombie on the blockchain. This may take a while...");
+  const kittyObject = await cryptoZombies.methods.balanceOf(kittyContractAddress);
+  // kittyObject
+  // .send({ from: userAccount })
+  // .on("receipt", function (receipt) {
+  //   $("#txStatus").text("Kitty Contract Set Successfully!!");
+  // })
+  // .on("error", function (error) {
+  //   $("#txStatus").text(error);
+  // });
+  kittyObject
+    .send({ from: userAccount })
+    .on("receipt", function (receipt) {
+      console.log("---", receipt);
+      $("#txStatus").text("Kitty Contract Set Successfully!!");
+    })
+    .on("error", function (error) {
+      $("#txStatus").text(error);
+    });
+}
+
+function attackZombieHelper() {
+}
+
+async function changeZombieName() {
+  var newName = document.getElementById('zombieNewName').value;
+  const zombieId = await getZombiesByOwner(userAccount).then(async (userId) => {
+    return userId;
+  });
+  return cryptoZombies.methods.changeName(zombieId, newName)
+    .send({ from: userAccount })
+    .on("receipt", function (receipt) {
+      $("#txStatus").text("Zombie name changed successfully.");
+    })
+    .on("error", function (error) {
+      $("#txStatus").text(error);
+    });
+}
+
+function hashString(string) {
+  //set variable hash as 0
+  var hash = 0;
+  // if the length of the string is 0, return 0
+  if (string.length == 0) return hash;
+  for (i = 0; i < string.length; i++) {
+    ch = string.charCodeAt(i);
+    hash = ((hash << 5) - hash) + ch;
+    hash = hash & hash;
+  }
+  if(hash < 0) {
+    hash = (-hash);
+  }
+  return (hash%5)+1;
 }
 
 //the following code from Lesson 6, chapter 2 is obsolete
