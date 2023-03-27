@@ -6,7 +6,7 @@ var showZombieButton, createzombieButton, levelupButton, homeView, appView, zomb
 
 function startApp() {
   //ZombieOwnership contratc address
-  var cryptoZombiesAddress = "0x8Bcb721BE1E1da292101A55961e730327a238069";
+  var cryptoZombiesAddress = "0xFf1e23854A37920Bc2a781c74A9057f40fE0Bf9b";
 
   cryptoZombies = new web3.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
 
